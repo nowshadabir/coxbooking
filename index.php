@@ -34,7 +34,7 @@ foreach ($roomCategories as $categoryId => $category) {
     <header class="topbar"><a class="brand" href="index.php" aria-label="Cox Booking home"><span
                 class="brand-mark">c.</span><span>cox<span class="brand-light">booking</span></span></a>
         <nav class="desktop-nav" id="primary-navigation"><a class="active" href="index.php#room-categories">Stays</a><a
-                href="about.php">Our story</a><a href="partner.php">For hoteliers</a></nav><a class="nav-cta"
+                href="about.php">Our story</a><a href="partner.php">For hoteliers</a><a href="saint-martin.php">Saint Martin <span style="font-size: 8px; background: #b96e53; color: #fff; padding: 2px 6px; border-radius: 10px; margin-left: 2px; vertical-align: middle;">Free</span></a></nav><a class="nav-cta"
             href="request.php">Plan your stay <span>↗</span></a><button class="menu-toggle" type="button"
             aria-label="Open navigation" aria-controls="primary-navigation" aria-expanded="false"><span
                 aria-hidden="true">☰</span></button>
@@ -52,6 +52,15 @@ foreach ($roomCategories as $categoryId => $category) {
             <div class="hero-note"><span>21° 25′ N &nbsp; 91° 58′ E</span><span>COX’S BAZAR, BANGLADESH</span></div>
             <div class="hero-counter">01 <i></i> 03</div>
         </section>
+        <div class="wrap" style="margin-top: 24px; margin-bottom: -50px; position: relative; z-index: 2;">
+            <a href="saint-martin.php" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #263a32; color: #fff; padding: 14px 24px; border-radius: 4px; box-shadow: 0 4px 20px rgba(38, 58, 50, 0.15); text-decoration: none; flex-wrap: wrap; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                    <span style="background: #b96e53; color: #fff; font-size: 10px; font-weight: 700; padding: 4px 9px; border-radius: 12px; letter-spacing: 0.06em; text-transform: uppercase;">Opening Nov 1</span>
+                    <span style="font-size: 13px; font-weight: 500;">🌊 Free Pre-Booking for Saint Martin Island — Reserve Ship Tickets & Beach Resorts with 0 Advance</span>
+                </div>
+                <span style="font-size: 12px; font-weight: 600; color: #e5cfb8; display: inline-flex; align-items: center; gap: 6px;">Claim Free Booking <span>↗</span></span>
+            </a>
+        </div>
         <section class="intro wrap">
             <div class="eyebrow"><span></span> A stay that feels like yours</div>
             <div class="intro-row">
@@ -140,7 +149,7 @@ foreach ($roomCategories as $categoryId => $category) {
                         class="brand-light">booking</span></span></a>
             <div class="footer-note">Thoughtful stays by the Bay of Bengal.<br>Made with care, in Cox’s Bazar.</div>
             <div class="footer-links"><a href="about.php">Our story</a><a href="partner.php">Partner with us</a><a
-                    href="request.php">Request a stay</a></div>
+                    href="request.php">Request a stay</a><a href="saint-martin.php">Saint Martin</a></div>
         </div>
         <div class="wrap footer-bottom"><span>© <?= date('Y') ?> Cox Booking</span><span>Managed by <a
                     href="https://vivagotechnologies.com" target="_blank" rel="noopener">Vivago

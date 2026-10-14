@@ -40,6 +40,35 @@ function ensure_schema(PDO $pdo): void {
         if ($statement !== '') $pdo->exec($statement);
     }
     ensure_room_public_ids($pdo);
+    ensure_saint_martin_table($pdo);
+}
+function ensure_saint_martin_table(PDO $pdo): void {
+    static $ready = false;
+    if ($ready) return;
+    $pdo->exec("CREATE TABLE IF NOT EXISTS saint_martin_requests (
+      id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(190) NOT NULL,
+      whatsapp VARCHAR(60) NOT NULL,
+      email VARCHAR(190) NOT NULL,
+      members_count VARCHAR(100) NOT NULL,
+      service_needed VARCHAR(100) NOT NULL,
+      need_ship_ticket TINYINT(1) NOT NULL DEFAULT 0,
+      need_hotel TINYINT(1) NOT NULL DEFAULT 0,
+      approx_travel_date VARCHAR(60) NOT NULL,
+      notes TEXT DEFAULT NULL,
+      extra_requests TEXT DEFAULT NULL,
+      status VARCHAR(40) NOT NULL DEFAULT 'new',
+      admin_notes TEXT DEFAULT NULL,
+      created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      INDEX idx_sm_status (status),
+      INDEX idx_sm_created (created_at)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+    $hasExtra = $pdo->query("SHOW COLUMNS FROM saint_martin_requests LIKE 'extra_requests'")->fetch();
+    if (!$hasExtra) {
+        $pdo->exec("ALTER TABLE saint_martin_requests ADD COLUMN extra_requests TEXT DEFAULT NULL AFTER notes");
+    }
+    $ready = true;
 }
 function generate_room_public_id(PDO $pdo): string {
     $alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -139,7 +168,7 @@ function room_image_paths(PDO $pdo, int $roomId): array {
 }
 function admin_header(string $title): void {
     $path = rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '/admin/', '/') ?: '/';
-    $links = [['/admin/','Overview'],['/admin/requests.php','Requests'],['/admin/hotels.php','Hotels'],['/admin/categories.php','Categories'],['/admin/rooms.php','Rooms']];
+    $links = [['/admin/','Overview'],['/admin/requests.php','Requests'],['/admin/saint-martin.php','Saint Martin'],['/admin/hotels.php','Hotels'],['/admin/categories.php','Categories'],['/admin/rooms.php','Rooms']];
     echo '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' . e($title) . ' — Cox Booking Admin</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/admin/admin.css"></head><body><header class="admin-top"><a class="admin-brand" href="/admin/" aria-label="Cox Booking admin overview"><span class="admin-brand-mark">c.</span><span class="admin-brand-name">coxbooking</span><span class="admin-brand-tag">ADMIN</span></a><nav aria-label="Admin navigation">';
     foreach ($links as [$href, $label]) { $active = $path === (rtrim($href, '/') ?: '/') || ($href === '/admin/' && $path === '/admin/index.php'); echo '<a href="' . $href . '"' . ($active ? ' class="active" aria-current="page"' : '') . '>' . $label . '</a>'; }
     echo '</nav><a class="admin-signout" href="/admin/logout.php">Sign out <span aria-hidden="true">↗</span></a></header><main class="admin-main"><div class="admin-page-heading"><div><p class="admin-kicker">COX BOOKING · ADMIN</p><h1>' . e($title) . '</h1></div><a class="admin-view-site" href="/" target="_blank" rel="noopener">View website <span aria-hidden="true">↗</span></a></div>';

@@ -86,3 +86,24 @@ CREATE TABLE IF NOT EXISTS requests (
   INDEX idx_requests_type_status (request_type, status),
   INDEX idx_requests_created (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS saint_martin_requests (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(190) NOT NULL,
+  whatsapp VARCHAR(60) NOT NULL,
+  email VARCHAR(190) NOT NULL,
+  members_count VARCHAR(100) NOT NULL,
+  service_needed VARCHAR(100) NOT NULL,
+  need_ship_ticket TINYINT(1) NOT NULL DEFAULT 0,
+  need_hotel TINYINT(1) NOT NULL DEFAULT 0,
+  approx_travel_date VARCHAR(60) NOT NULL,
+  notes TEXT DEFAULT NULL,
+  extra_requests TEXT DEFAULT NULL,
+  status VARCHAR(40) NOT NULL DEFAULT 'new',
+  admin_notes TEXT DEFAULT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_sm_status (status),
+  INDEX idx_sm_created (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

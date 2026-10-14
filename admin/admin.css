@@ -98,3 +98,35 @@ a.stat-box:hover{transform:translateY(-2px);box-shadow:0 15px 34px rgba(35,54,47
 @media(max-width:700px){.admin-top{position:relative;display:grid;grid-template-columns:1fr auto;padding:11px 16px;gap:8px 12px}.admin-brand{grid-column:1}.admin-signout{grid-column:2;grid-row:1;min-height:36px;padding-inline:10px;font-size:11px}.admin-top nav{grid-column:1/-1;grid-row:2;display:flex;width:calc(100vw - 32px);overflow-x:auto;gap:3px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.28) transparent;padding:2px 0 5px;overscroll-behavior-inline:contain}.admin-top nav a{min-height:38px;padding-inline:12px}.admin-main{width:calc(100% - 28px);margin:27px auto 55px}.admin-page-heading{align-items:center;margin-bottom:20px}.admin-page-heading .admin-view-site{font-size:10px;gap:7px}.admin-main h1{font-size:29px}.admin-card,.admin-form{padding:17px}.admin-card .admin-form{padding:0}.admin-form-grid{grid-template-columns:1fr;gap:13px}.admin-form .full{grid-column:auto}.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.stat-box{padding:14px}.stat-box b{font-size:25px}.dashboard-actions{grid-template-columns:1fr}.admin-table{min-width:650px}.detail-grid{grid-template-columns:105px minmax(0,1fr)}.login-card{padding:23px}.modal{padding:10px;align-items:end}.modal-card{max-height:88svh;padding:22px 17px}.modal-close{top:9px;right:9px}.managed-image{align-items:flex-start;width:100%}.managed-image form{max-width:100%}.replace-image-form{flex:1 1 100%}.replace-image-form input[type=file]{max-width:100%;width:100%}}
 @media(max-width:420px){.admin-page-heading{align-items:flex-start}.admin-page-heading .admin-view-site{margin-top:18px}.admin-main h1{font-size:25px}.admin-main h2{font-size:19px}.admin-table th,.admin-table td{padding:11px 12px}.detail-grid{grid-template-columns:1fr;gap:3px}.detail-grid dd{margin-bottom:9px}.admin-actions{align-items:stretch}.admin-actions>*{flex:1 1 auto}.admin-actions .admin-button{width:100%}.stat-box span{font-size:10px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Saint Martin Admin Enhancements */
+.admin-status.status-new { background: #fdf2e9; color: #a35b2e; border: 1px solid #ebd0bc; }
+.admin-status.status-contacted { background: #e8f2f9; color: #215c82; border: 1px solid #c9e0f0; }
+.admin-status.status-confirmed { background: #e6f4ea; color: #1c663c; border: 1px solid #c2e2cc; }
+.admin-status.status-cancelled { background: #f0ede6; color: #737068; border: 1px solid #dfdcd3; }
+
+.admin-filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
+.admin-filter-tab { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: #fffdf8; border: 1px solid var(--line); font-size: 12px; color: #5a665e; text-decoration: none; border-radius: 2px; transition: all 0.18s; }
+.admin-filter-tab:hover { background: #f6f4ed; color: var(--ink); border-color: #adb5a9; }
+.admin-filter-tab.active { background: #233b32; color: #fff; border-color: #233b32; }
+.admin-filter-tab .badge { font-size: 10px; background: rgba(0,0,0,0.08); padding: 2px 6px; border-radius: 10px; }
+.admin-filter-tab.active .badge { background: rgba(255,255,255,0.22); color: #fff; }
+
+.inline-form { display: flex; align-items: center; gap: 6px; margin: 0; }
+.inline-status-select { min-height: 34px !important; height: 34px; padding: 4px 8px !important; font-size: 12px !important; border-radius: 2px; width: 125px !important; font-weight: 500; }
+.inline-note-input { min-height: 34px !important; height: 34px; padding: 6px 9px !important; font-size: 12px !important; min-width: 170px; max-width: 260px; width: 100%; border-radius: 2px; }
+.inline-save-btn { min-height: 34px; height: 34px; padding: 0 10px; font-size: 11px; font-weight: 600; background: #29483d; color: #fff; border: 0; border-radius: 2px; cursor: pointer; white-space: nowrap; transition: background 0.18s; }
+.inline-save-btn:hover { background: #19332a; }
+
+.admin-wa-pill { display: inline-flex; align-items: center; gap: 5px; background: #e8f8ee; border: 1px solid #bcead0; color: #167a3f; padding: 3px 8px; border-radius: 12px; font-size: 11px; text-decoration: none; font-weight: 600; white-space: nowrap; margin-top: 3px; }
+.admin-wa-pill:hover { background: #25D366; color: #fff; border-color: #25D366; }
+
+.service-badge { display: inline-block; padding: 3px 8px; border-radius: 2px; font-size: 10px; font-weight: 600; letter-spacing: 0.02em; }
+.service-package { background: #ebdcc9; color: #7a461e; }
+.service-ship { background: #dde9f3; color: #1b5278; }
+.service-hotel { background: #e3ede3; color: #2a5d35; }
+.service-custom { background: #eeebe1; color: #58554b; }
+
+.flash-toast { position: fixed; bottom: 24px; right: 24px; background: #233b32; color: #fff; padding: 12px 20px; border-radius: 4px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); font-size: 13px; z-index: 999; animation: toast-in 0.3s ease; }
+@keyframes toast-in { from { transform: translateY(12px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
