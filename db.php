@@ -49,7 +49,7 @@ function ensure_saint_martin_table(PDO $pdo): void {
       id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
       name VARCHAR(190) NOT NULL,
       whatsapp VARCHAR(60) NOT NULL,
-      email VARCHAR(190) NOT NULL,
+      email VARCHAR(190) DEFAULT NULL,
       members_count VARCHAR(100) NOT NULL,
       service_needed VARCHAR(100) NOT NULL,
       need_ship_ticket TINYINT(1) NOT NULL DEFAULT 0,
@@ -67,6 +67,10 @@ function ensure_saint_martin_table(PDO $pdo): void {
     $hasExtra = $pdo->query("SHOW COLUMNS FROM saint_martin_requests LIKE 'extra_requests'")->fetch();
     if (!$hasExtra) {
         $pdo->exec("ALTER TABLE saint_martin_requests ADD COLUMN extra_requests TEXT DEFAULT NULL AFTER notes");
+    }
+    $emailCol = $pdo->query("SHOW COLUMNS FROM saint_martin_requests LIKE 'email'")->fetch(PDO::FETCH_ASSOC);
+    if ($emailCol && strtoupper((string)($emailCol['Null'] ?? '')) === 'NO') {
+        $pdo->exec("ALTER TABLE saint_martin_requests MODIFY email VARCHAR(190) DEFAULT NULL");
     }
     $ready = true;
 }

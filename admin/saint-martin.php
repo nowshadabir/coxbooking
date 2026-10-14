@@ -186,8 +186,10 @@ admin_header('Saint Martin Pre-Bookings');
                 </td>
                 <td>
                     <strong style="font-size: 13px; color: #233b32;"><?= e($r['name']) ?></strong>
+                    <?php if (!empty($r['email'])): ?>
                     <br>
                     <a href="mailto:<?= e($r['email']) ?>" style="color: #55645c; font-size: 11px; text-decoration: underline;"><?= e($r['email']) ?></a>
+                    <?php endif; ?>
                     <br>
                     <a class="admin-wa-pill" href="https://wa.me/<?= $cleanPhone ?>?text=<?= $waText ?>" target="_blank" rel="noopener" title="Message on WhatsApp">
                         <span>💬 <?= e($r['whatsapp']) ?></span>
